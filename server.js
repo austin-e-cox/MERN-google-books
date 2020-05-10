@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const mongoose = require("mongoose");
-const routes = require("./routes");
+const routes = require("./routes/api");
 
 const books = require('./routes/api/books');
 
@@ -18,8 +18,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes
-app.use(routes);
-app.use("/api/books", books);
+app.use("/api", books);
 
 
 // Connect to the Mongo DB

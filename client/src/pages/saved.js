@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Jumbotron from "../components/Jumbotron";
+import { List } from "../components/List";
+import Book from "../components/Book";
+
 import API from "../utils/API";
 
 function Books() {
@@ -23,37 +26,9 @@ function Books() {
 
 
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                onChange={() => {}}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                onChange={() => {}}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                onChange={() => {}}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(formObject.author && formObject.title)}
-                onClick={() => {}}
-              >
-                Submit Book
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
             <Jumbotron>
               <h1>Books On My List</h1>
             </Jumbotron>
@@ -61,23 +36,16 @@ function Books() {
               <List>
                 {books.map(book => {
                   return (
-                    <ListItem key={book._id}>
-                      <a href={"/books/" + book._id}>
-                        <strong>
-                          {book.title} by {book.author}
-                        </strong>
-                      </a>
-                      <DeleteBtn onClick={() =>{}} />
-                    </ListItem>
+                    <Book key={book._id} />
                   );
                 })}
               </List>
             ) : (
               <h3>No Results to Display</h3>
             )}
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     );
   }
 

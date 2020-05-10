@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchArea from "../components/SearchArea";
+import { List, ListItem } from "../components/List";
 import Book from "../components/Book";
 
 import API from "../utils/API";
@@ -15,21 +16,21 @@ function Search() {
     loadBooks()
   }, [])
 
-  function searchBook(title){
-    url = `https://www.googleapis.com/books/v1/volumes?q=${title}`;
-    let bookData = $.get(url, function(response){
-       console.log(response)
+  async function searchBook(title){
+    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}`;
+    let bookData = await $.get(url, function(response){
        return response;
-     })
+     });
      return bookData;
   }  
 
   // Loads all books and sets them to books
   function loadBooks() {
     return searchBook(searchValue)
-      .then(res => 
-        setBooks(res.data)
-      )
+      .then(res => {
+        console.log(res);
+        setBooks(res.items);
+      })
       .catch(err => console.log(err));
   };
 
@@ -43,14 +44,7 @@ function Search() {
             <List>
               {books.map(book => {
                 return (
-                  <ListItem key={book._id}>
-                    <a href={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </a>
-                    <DeleteBtn onClick={() =>{}} />
-                  </ListItem>
+                  <Book key={book.id} data={book.volumeInfo}/>
                 );
               })}
             </List>

@@ -1,17 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
-import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import './App.css';
 
-import Navbar from "./components/layout/Navbar";
-import Search from "./components/search";
-import Saved from "./components/saved";
-import Jumbotron from "./components/jumbotron";
+import Navbar from "./components/Navbar";
+import Jumbotron from "./components/Jumbotron";
+import Search from "./pages/search";
+import Saved from "./pages/saved";
 
 function App() {
   return (

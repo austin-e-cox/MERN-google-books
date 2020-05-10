@@ -1,10 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => (
-
-  <nav className="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="pb-navbar">
+  <nav className="navbar navbar-expand-lg navbar-light navbar scrolled-light" id="navbar">
       <div className="container">
         <Link className="navbar-brand" to="/">MERN book search</Link>
         <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +17,6 @@ const Navbar = () => (
         </div>
       </div>
     </nav>
-
 );
 
 export default Navbar;
