@@ -15,7 +15,7 @@ import API from "../../utils/API";
 export default function Book(props) {
   const type = props.type;
   const handleDelete = props.handleDelete;
-  const [color, setColor] = useState((type=="delete") ? "btn-danger" : "btn-success")  
+  const [color, setColor] = useState((type==="delete") ? "btn-danger" : "btn-success")  
   props = props.data
 
   // sanitize missing data

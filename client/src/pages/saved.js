@@ -25,7 +25,6 @@ function Books() {
 
   function handleDelete() {
     setTimeout(loadBooks, 50)
-    
   }
 
 
