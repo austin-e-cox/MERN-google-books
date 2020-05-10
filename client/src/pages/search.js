@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import "./style.css"
 import SearchArea from "../components/SearchArea";
-import { List, ListItem } from "../components/List";
+import { List } from "../components/List";
 import Book from "../components/Book";
-
-import API from "../utils/API";
 import $ from "jquery";
 
 function Search() {
@@ -39,12 +38,13 @@ function Search() {
       <div className="row">
         <SearchArea setSearch={setSearchValue}/>
       </div>
+      <div className="row">
         <div className="col-md-12">
           {books.length ? (
             <List>
               {books.map(book => {
                 return (
-                  <Book key={book.id} data={book.volumeInfo}/>
+                  <Book type="save" key={book.id} data={book.volumeInfo}/>
                 );
               })}
             </List>
@@ -52,6 +52,7 @@ function Search() {
             <h3>No Results to Display</h3>
           )}
         </div>
+      </div>
     </div>
   );
 }

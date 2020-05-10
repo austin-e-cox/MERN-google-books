@@ -15,8 +15,8 @@ function App() {
           <Navbar />
           <Jumbotron />
           <Switch>
-            <Route path="/search" component = {Search} />
-            <Route path="/saved" component = {Saved} />
+            <Route path="/search" component={Search} />
+            <Route path="/saved" component={Saved} />
           </Switch>
         </div>
       </Router>
