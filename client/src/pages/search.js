@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./style.css"
+import $ from "jquery";
 import SearchArea from "../components/SearchArea";
 import { List } from "../components/List";
 import Book from "../components/Book";
-import $ from "jquery";
+import "./style.css"
 
 function Search() {
   // Setting our component's initial state

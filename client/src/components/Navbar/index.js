@@ -7,7 +7,10 @@ const Navbar = () => (
       <div className="container">
         <Link className="navbar-brand" to="/">MERN book search</Link>
         <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="probootstrap-navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span><i className="ion-navicon"></i></span>
+          
+          <div className="nav-item"><Link className="nav-link" to="/search">search</Link></div>
+          <div className="nav-item"><Link className="nav-link" to="/saved">saved</Link></div>
+
         </button>
         <div className="collapse navbar-collapse" id="collapsingNavbar" >
           <ul className="navbar-nav ml-auto">
