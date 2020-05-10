@@ -1,20 +1,31 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+
+import './App.css';
+
+import Navbar from "./components/layout/Navbar";
+import Search from "./components/search";
+import Saved from "./components/saved";
+import Jumbotron from "./components/jumbotron";
 
 function App() {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-    </div>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Jumbotron />
+          <Switch>
+            <Route path="/search" component = {Search} />
+            <Route path="/saved" component = {Saved} />
+          </Switch>
+        </div>
+      </Router>
   );
 }
-
 
 export default App;

@@ -3,6 +3,12 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+const mongoose = require("mongoose");
+const routes = require("./routes");
+
+const books = require('./routes/api/books');
+
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -11,7 +17,18 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// Add routes
+app.use(routes);
+app.use("/api/books", books);
+
+
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks")
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
 // Define API routes here
+
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -22,3 +39,4 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
+
