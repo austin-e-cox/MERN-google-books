@@ -13,9 +13,16 @@ import API from "../../utils/API";
 //}
 
 export default function Book(props) {
-  console.log(props)
   const type = props.type;
   props = props.data
+
+  // sanitize missing data
+  if (!props.authors){
+    props.authors = []
+  }
+  if (!props.imageLinks)
+    props.imageLinks = {thumbnail:"https://via.placeholder.com/728x90.png"}
+
   const btnAction = (type) => {
     if (type === "delete"){
       return <button type="button" className="btn btn-danger" onClick={() => API.deleteBook(props.id)}>Delete</button>
@@ -23,7 +30,7 @@ export default function Book(props) {
     else if (type === "save"){
       let bookData = {
         title: props.title,
-        link: props.link,
+        link: props.infoLink,
         description: props.description,
         authors: props.authors,
         image: props.imageLinks.thumbnail
@@ -31,8 +38,6 @@ export default function Book(props) {
       return <button type="button" className="btn btn-success" onClick={() => API.saveBook(bookData)}>Save</button>
     }
   };
-
-  console.log(props.imageLinks.thumbnail);
 
   return (
     <div className="row book">
@@ -42,7 +47,7 @@ export default function Book(props) {
             <h2 className="">{props.title}</h2>
           </div>
           <div className="col-md-1">
-            <button className="btn btn-info" href={props.link}>View</button>
+            <a className="btn btn-info" href={props.infoLink}>View</a>
             </div>
           <div className="col-md-2">
             {btnAction(type)}

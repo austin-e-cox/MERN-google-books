@@ -1,30 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 
 export default function Input(props) {  
-  const input = React.createRef();
-  function handleSubmit(event) {
-    // props.
-    event.preventDefault();
+  const [value, setValue] = useState("")
+
+  function handleChange(event) {
+    setValue(event.target.value);
   }
 
   return (
     <div className="col-md-12">
       <div className="search-area">
         <h2 className="p10">Book Search</h2>
-        <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="bookToFind" className="p10">Book</label>
-          <div className="input-group mb-3 p10">
-            <input type="text" className="form-control" placeholder="Book name" aria-label="Book name" aria-describedby="name-of-book" ref={input}/>
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button" onClick={() => props.setSearchValue({input})}>Search</button>
+        <form>
+          <div className="form-group">
+            <label htmlFor="bookToFind" className="p10">Book</label>
+            <div className="input-group mb-3 p10">
+              <input type="text" className="form-control" placeholder="Book name" aria-label="Book name" aria-describedby="name-of-book"
+              value={value}
+              onChange={
+                (event) => {
+                handleChange(event);
+                props.setSearch(event.target.value);
+                }
+              }
+              />
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
   );
 }
 

@@ -8,11 +8,16 @@ import $ from "jquery";
 function Search() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
-  const [searchValue, setSearchValue] = useState({})
+  const [searchValue, setSearchValue] = useState("")
+
+  function setIt(val){
+    setSearchValue(val)
+    loadBooks()
+  }
 
   // Load all books and store them with setBooks
   useEffect(() => {
-    loadBooks()
+    loadBooks(searchValue)
   }, [])
 
   async function searchBook(title){
@@ -25,9 +30,10 @@ function Search() {
 
   // Loads all books and sets them to books
   function loadBooks() {
+    if (!searchValue)
+      return []
     return searchBook(searchValue)
       .then(res => {
-        console.log(res);
         setBooks(res.items);
       })
       .catch(err => console.log(err));
@@ -36,7 +42,7 @@ function Search() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <SearchArea setSearch={setSearchValue}/>
+        <SearchArea setSearch={setIt}/>
       </div>
       <div className="row">
         <div className="col-md-12">
